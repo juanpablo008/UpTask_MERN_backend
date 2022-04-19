@@ -5,6 +5,8 @@ import connectDB from "./config/db.js"
 import userRoutes from "./routes/userRoutes.js"
 import projectRoutes from "./routes/projectRoutes.js"
 import taskRoutes from "./routes/taskRoutes.js"
+import { Server } from "socket.io"
+
 
 const app = express()
 app.use(express.json())
@@ -42,8 +44,6 @@ const server = app.listen(PORT, () => {
 })
 
 // Socket.io
-
-import { Server } from "socket.io"
 const io = new Server(server, {
   pingInterval: 60000,
   cors: {
