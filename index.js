@@ -25,7 +25,7 @@ const corsOptions = {
       callback(null, true)
     } else {
       // Cannot send access control headers
-      callback(console.log("No permitido por CORS"))
+      callback(new Error("No permitido por CORS"))
     }
   },
 }

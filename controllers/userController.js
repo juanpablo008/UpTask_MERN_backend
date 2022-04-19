@@ -94,10 +94,10 @@ const forgotPassword = async (req, res) => {
     return res.status(404).json({msg: error.message})
   }
 
-  if(user.token){
+  /*if(user.token){
     const error = new Error("Ya has solicitado un cambio de contraseña")
     return res.status(404).json({msg: error.message})
-  }
+  }*/
 
   try {
     user.token = generateId()
