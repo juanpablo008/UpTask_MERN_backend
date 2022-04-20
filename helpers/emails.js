@@ -1,21 +1,25 @@
 import nodemailer from 'nodemailer'
 
 export const emailRegister = async (data) => {
+
+  console.log(process.env.EMAIL_HOST_GMAIL," ",process.env.EMAIL_PORT_GMAIL, " ", process.env.EMAIL_USER_GMAIL, " ", process.env.EMAIL_PASS_GMAIL)
   
   const { email, name, token } = data
-  const transport = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
+  const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST_GMAIL,
+    port: process.env.EMAIL_PORT_GMAIL,
+    secure: true,
+    service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      user: process.env.EMAIL_USER_GMAIL,
+      pass: process.env.EMAIL_PASS_GMAIL
     }
   })
 
   // Information of the email
 
-  await transport.sendMail({
-    from: '"UpTask - Administrador de Proyectos" <cuentas@uptask.com>',
+  await transporter.sendMail({
+    from: `"UpTask - Administrador de Proyectos" <${process.env.EMAIL_USER_GMAIL}>`,
     to: email,
     subject: "UpTask - Confirma tu cuenta",
     html: `
@@ -90,19 +94,20 @@ export const emailRegister = async (data) => {
 export const emailForgotPassword = async (data) => {
   
   const { email, name, token } = data
-  const transport = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
+  const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST_GMAIL,
+    port: process.env.EMAIL_PORT_GMAIL,
+    secure: true,
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      user: process.env.EMAIL_USER_GMAIL,
+      pass: process.env.EMAIL_PASS_GMAIL
     }
   })
 
   // Information of the email
 
-  await transport.sendMail({
-    from: '"UpTask - Administrador de Proyectos" <cuentas@uptask.com>',
+  await transporter.sendMail({
+    from: `"UpTask - Administrador de Proyectos" <${process.env.EMAIL_USER_GMAIL}>`,
     to: email,
     subject: "UpTask - Reestablece tu contraseña",
     html: `
