@@ -18,7 +18,7 @@ export const emailRegister = async (data) => {
 
   // Information of the email
 
-  await transporter.sendMail({
+  const resp = await transporter.sendMail({
     from: `"UpTask - Administrador de Proyectos" <${process.env.EMAIL_USER_GMAIL}>`,
     to: email,
     subject: "UpTask - Confirma tu cuenta",
@@ -86,7 +86,7 @@ export const emailRegister = async (data) => {
       </style>
     </body>`
   })
-
+  console.log(resp)
 }
 
 
@@ -106,7 +106,7 @@ export const emailForgotPassword = async (data) => {
 
   // Information of the email
 
-  await transporter.sendMail({
+  const resp = await transporter.sendMail({
     from: `"UpTask - Administrador de Proyectos" <${process.env.EMAIL_USER_GMAIL}>`,
     to: email,
     subject: "UpTask - Reestablece tu contraseña",
@@ -175,5 +175,5 @@ export const emailForgotPassword = async (data) => {
       </style>
     </body>`
   })
-
+  console.log(resp)
 }
