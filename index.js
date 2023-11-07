@@ -15,20 +15,18 @@ dotenv.config()
 
 connectDB()
 
-// Config CORS
-const whitelist = [process.env.FRONTEND_URL]
+// allowed urls
+const whitelist = [
+  process.env.FRONTEND_URL
+]
 
+// Config CORS
 const corsOptions = {
-  origin: function(origin, callback) {
-    if (whitelist.includes(origin)) {
-      // Can send access control headers
-      callback(null, true)
-    } else {
-      // Cannot send access control headers
-      callback(new Error("No permitido por CORS"))
-    }
-  },
-}
+  origin: whitelist,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Habilita el envío de cookies y encabezados de autorización
+};
+
 
 app.use(cors(corsOptions))
 
